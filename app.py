@@ -46,7 +46,7 @@ def index():
 
         # Handle uploads
         for section in SECTIONS:
-            files = request.files.getlist(section)
+            files = request.files.getlist(section) if section in request.files else []
             for file in files:
                 if file.filename:
                     path = os.path.join(UPLOAD_FOLDER, file.filename)
