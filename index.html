@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inspection App</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .dropzone {
+            border: 2px dashed #aaa;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Inspection Report Generator</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+    <textarea name="inspection_text" rows="6" cols="80"
+        placeholder="Paste inspection notes here..."></textarea>
+
+    {% for section in sections %}
+        <h3>{{ section }}</h3>
+        <div class="dropzone"
+             ondrop="dropHandler(event, '{{ section }}')"
+             ondragover="event.preventDefault()">
+            Drag & Drop Images Here
+            <input type="file" name="{{ section }}" multiple>
+        </div>
+    {% endfor %}
+
+    <button type="submit">Generate PDF Report</button>
+</form>
+
+<script>
+function dropHandler(ev, section) {
+    ev.preventDefault();
+    const input = document.querySelector(`input[name="${section}"]`);
+    input.files = ev.dataTransfer.files;
+}
+</script>
+
+</body>
+</html>
