@@ -41,7 +41,7 @@ def parse_inspection(text):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        text = request.form["inspection_text"]
+        text = request.form["inspection_text", ""]
         report = parse_inspection(text)
 
         # Handle uploads
