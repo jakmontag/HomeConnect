@@ -3,17 +3,18 @@ import os
 from fpdf import FPDF
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 UPLOAD_FOLDER = "static/uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-SECTIONS = [
-    "General Condition",
-    "Appliances",
-    "Plumbing",
-    "Electrical",
-    "HVAC System",
-    "Doors & Windows"
-]
+SECTIONS = {
+    "general": "General Condition",
+    "appliances": "Appliances",
+    "plumbing": "Plumbing",
+    "electrical": "Electrical",
+    "hvac": "HVAC System",
+    "doors_windows": "Doors & Windows"
+}
 
 def parse_inspection(text):
     text = text.lower()
@@ -47,11 +48,14 @@ def index():
         # Handle uploads
         for section in SECTIONS:
             files = request.files.getlist(section) if section in request.files else []
-            for file in files:
-                if file.filename:
-                    path = os.path.join(UPLOAD_FOLDER, file.filename)
-                    file.save(path)
-                    report[section]["images"].append(path)
+           for key, label in SECTIONS.items():
+                files = request.files.getlist(key)
+
+    for file in files:
+        if file and file.filename:
+            path = os.path.join(UPLOAD_FOLDER, file.filename)
+            file.save(path)
+            report[label]["images"].append(path)
 
         # Generate PDF
         pdf = FPDF()

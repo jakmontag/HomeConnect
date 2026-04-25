@@ -20,23 +20,23 @@
     <textarea name="inspection_text" rows="6" cols="80"
         placeholder="Paste inspection notes here..."></textarea>
 
-    {% for section in sections %}
-        <h3>{{ section }}</h3>
-        <div class="dropzone"
-             ondrop="dropHandler(event, '{{ section }}')"
-             ondragover="event.preventDefault()">
-            Drag & Drop Images Here
-            <input type="file" name="{{ section }}" multiple>
-        </div>
+    {% for key, label in sections.items() %}
+    <h3>{{ label }}</h3>
+    <div class="dropzone"
+         ondrop="dropHandler(event, '{{ key }}')"
+         ondragover="event.preventDefault()">
+        Drag & Drop Images Here
+        <input type="file" name="{{ key }}" multiple>
+    </div>
     {% endfor %}
 
     <button type="submit">Generate PDF Report</button>
 </form>
 
 <script>
-function dropHandler(ev, section) {
+function dropHandler(ev, key) {
     ev.preventDefault();
-    const input = document.querySelector(`input[name="${section}"]`);
+    const input = document.querySelector(`input[name="${key}"]`);
     input.files = ev.dataTransfer.files;
 }
 </script>
