@@ -21,13 +21,13 @@
         placeholder="Paste inspection notes here..."></textarea>
 
     {% for key, label in sections.items() %}
-    <h3>{{ label }}</h3>
-    <div class="dropzone"
-         ondrop="dropHandler(event, '{{ key }}')"
-         ondragover="event.preventDefault()">
-        Drag & Drop Images Here
-        <input type="file" name="{{ key }}" multiple>
-    </div>
+        <h3>{{ label }}</h3>
+            <div class="dropzone"
+                ondrop="dropHandler(event, '{{ key }}')"
+                ondragover="event.preventDefault()">
+                Drag & Drop Images Here
+                <input type="file" name="{{ key }}" multiple>
+            </div>
     {% endfor %}
 
     <button type="submit">Generate PDF Report</button>

@@ -51,11 +51,11 @@ def index():
             for key, label in SECTIONS.items():
                 files = request.files.getlist(key)
 
-    for file in files:
-        if file and file.filename:
-            path = os.path.join(UPLOAD_FOLDER, file.filename)
-            file.save(path)
-            report[label]["images"].append(path)
+                for file in files:
+                    if file and file.filename:
+                        path = os.path.join(UPLOAD_FOLDER, file.filename)
+                        file.save(path)
+                        report[label]["images"].append(path)
 
         # Generate PDF
         pdf = FPDF()
