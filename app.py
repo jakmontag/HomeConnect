@@ -48,7 +48,7 @@ def index():
         # Handle uploads
         for section in SECTIONS:
             files = request.files.getlist(section) if section in request.files else []
-           for key, label in SECTIONS.items():
+            for key, label in SECTIONS.items():
                 files = request.files.getlist(key)
 
     for file in files:
