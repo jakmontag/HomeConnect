@@ -86,20 +86,20 @@ def index():
             if not content["notes"] and not content.get("images"):
                 continue
 
-    pdf.set_font("Arial", "B", 12)
-    pdf.cell(0, 10, section, ln=True)
+            pdf.set_font("Arial", "B", 12)
+            pdf.cell(0, 10, section, ln=True)
 
-    pdf.set_font("Arial", "", 10)
+            pdf.set_font("Arial", "", 10)
 
-    for note in content["notes"]:
-        pdf.multi_cell(0, 8, f"- {note}")
+            for note in content["notes"]:
+                pdf.multi_cell(0, 8, f"- {note}")
 
-    # If you add images back later, they'll still work
-    for img in content.get("images", []):
-        try:
-            pdf.image(img, w=100)
-        except:
-            pass
+            # If you add images back later, they'll still work
+            for img in content.get("images", []):
+                try:
+                    pdf.image(img, w=100)
+                except:
+                    pass
 
         pdf_path = "report.pdf"
         pdf.output(pdf_path)
