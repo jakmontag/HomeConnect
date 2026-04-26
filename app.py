@@ -44,6 +44,7 @@ def index():
     if request.method == "POST":
         try:
             text = request.form.get("inspection_text", "")
+            print(text)
             report = parse_inspection(text)
         except Exception as e:
             return f"ERROR: {str(e)}", 500
