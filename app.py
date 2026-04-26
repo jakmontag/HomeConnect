@@ -42,9 +42,11 @@ def parse_inspection(text):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        print("FORM:", request.form)
-        text = request.form.get("inspection_text", "")
-        report = parse_inspection(text)
+        try:
+            text = request.form.get("inspection_text", "")
+            report = parse_inspection(text)
+        except Exception as e:
+            return f"ERROR: {str(e)}", 500
 
         # Handle uploads
         #for section in SECTIONS:
