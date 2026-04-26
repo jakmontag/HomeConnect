@@ -40,6 +40,8 @@ def parse_inspection(text):
 
 
 @app.route("/", methods=["GET", "POST"])
+print("CONTENT TYPE:", request.content_type)
+print("RAW DATA:", request.get_data()[:200])
 def index():
     if request.method == "POST":
         try:
