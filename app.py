@@ -18,7 +18,7 @@ SECTIONS = {
 
 def parse_inspection(text):
     text = text.lower()
-    report = {s: {"notes": [], "images": []} for s in SECTIONS}
+    report = {s: {"notes": [] } for s in SECTIONS}
 
     parts = [p.strip() for p in text.replace(",", ".").split(".") if p.strip()]
 
