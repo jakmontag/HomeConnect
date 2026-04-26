@@ -16,6 +16,8 @@ SECTIONS = {
     "doors_windows": "Doors & Windows"
 }
 
+print("FORM:", request.form)
+
 def parse_inspection(text):
     text = text.lower()
     report = {s: {"notes": [], "images": []} for s in SECTIONS}
