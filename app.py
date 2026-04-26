@@ -8,12 +8,21 @@ UPLOAD_FOLDER = "static/uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 SECTIONS = {
-    "general": "General Condition",
+    "general": "Overall Condition",
+    "maintenance" : "Maintenance Work",
+    "projects" : "Recommendations Require Approval",
+    "keys" : "Locks",
+    "smoking" : "Signs of Smoking",
+    "pets" : "Signs of Pets", 
     "appliances": "Appliances",
     "plumbing": "Plumbing",
     "electrical": "Electrical",
+    "detectors" : "Detectors",
     "hvac": "HVAC System",
-    "doors_windows": "Doors & Windows"
+    "shutoff" : "Water Shutoff",
+    "doors_windows": "Doors & Windows",
+    "garage" : "Garage Doors",
+    "condenser" : "AC Condenser"
 }
 
 def parse_inspection(text):
@@ -73,18 +82,24 @@ def index():
         pdf.cell(0, 10, "Property Inspection Report", ln=True)
 
         for section, content in report.items():
-            pdf.set_font("Arial", "B", 12)
-            pdf.cell(0, 10, section, ln=True)
+    # Skip empty sections
+    if not content["notes"] and not content.get("images"):
+        continue
 
-            pdf.set_font("Arial", "", 10)
-            for note in content["notes"]:
-                pdf.multi_cell(0, 8, f"- {note}")
+    pdf.set_font("Arial", "B", 12)
+    pdf.cell(0, 10, section, ln=True)
 
-            for img in content["images"]:
-                try:
-                    pdf.image(img, w=100)
-                except:
-                    pass
+    pdf.set_font("Arial", "", 10)
+
+    for note in content["notes"]:
+        pdf.multi_cell(0, 8, f"- {note}")
+
+    # If you add images back later, they'll still work
+    for img in content.get("images", []):
+        try:
+            pdf.image(img, w=100)
+        except:
+            pass
 
         pdf_path = "report.pdf"
         pdf.output(pdf_path)
