@@ -19,8 +19,8 @@
 
     <textarea name="inspection_text" rows="6" cols="80"
         placeholder="Paste inspection notes here..."></textarea>
-        <input type="file" name="{{ key }}" multiple>
-<!--
+<!--        <input type="file" name="{{ key }}" multiple>
+
     {% for key, label in sections.items() %}
         <h3>{{ label }}</h3>
             <div class="dropzone"
@@ -34,13 +34,13 @@
     <button type="submit">Generate PDF Report</button>
 </form>
 
-<script>
+<!--script>
 function dropHandler(ev, key) {
     ev.preventDefault();
     const input = document.querySelector(`input[name="${key}"]`);
     input.files = ev.dataTransfer.files;
 }
-</script>
+</script-->
 
 </body>
 </html>

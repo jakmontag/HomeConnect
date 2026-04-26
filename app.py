@@ -44,8 +44,6 @@ def parse_inspection(text):
 def index():
     if request.method == "POST":
         try:
-            print("CONTENT TYPE:", request.content_type)
-            print("RAW DATA:", request.get_data()[:200])
             text = request.form.get("inspection_text", "")
             print(text)
             report = parse_inspection(text)
