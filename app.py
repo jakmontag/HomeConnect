@@ -18,7 +18,8 @@ SECTIONS = {
 
 def parse_inspection(text):
     text = text.lower()
-    report = {s: {"notes": [] } for s in SECTIONS}
+
+    report = {label: {"notes": [], "images": []} for label in SECTIONS.values()}
 
     parts = [p.strip() for p in text.replace(",", ".").split(".") if p.strip()]
 
@@ -44,6 +45,7 @@ def parse_inspection(text):
 def index():
     if request.method == "POST":
         try:
+            print("FORM:", request.form)
             text = request.form.get("inspection_text", "")
             print(text)
             report = parse_inspection(text)
@@ -93,4 +95,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run
+    app.run()
