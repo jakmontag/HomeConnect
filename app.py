@@ -82,9 +82,9 @@ def index():
         pdf.cell(0, 10, "Property Inspection Report", ln=True)
 
         for section, content in report.items():
-    # Skip empty sections
-    if not content["notes"] and not content.get("images"):
-        continue
+        # Skip empty sections
+            if not content["notes"] and not content.get("images"):
+                continue
 
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 10, section, ln=True)
