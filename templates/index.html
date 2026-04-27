@@ -9,6 +9,18 @@
             padding: 20px;
             margin-bottom: 20px;
         }
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px 20px;
+            max-width: 800px;
+        }
+
+        .checkbox-grid label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
     </style>
 </head>
 <body>
@@ -16,44 +28,31 @@
 <h1>Inspection Report Generator</h1>
 
 <form method="POST" enctype="multipart/form-data">
-    <input type="checkbox" id="summary" name="sum" value="s">
-    <label for="summary">Summary</label>
-    <input type="checkbox" id="work" name="work" value="w">
-    <label for="work">Work done or will be done</label>
-    <input type="checkbox" id="recommend" name="recommend" value="r">
-    <label for="recommend">Recomendations Require Approval</label>
-    <br>
-    <input type="checkbox" id="locks" name="locks" value="l">
-    <label for="locks">Lock</label>
-    <input type="checkbox" id="smoking" name="smoking" value="sm">
-    <label for="smoking">Signs of Smoking</label>
-    <input type="checkbox" id="pets" name="pets" value="p">
-    <label for="pets">Signs of Pets</label>
-    <br>
-    <input type="checkbox" id="appliance" name="app" value="a">
-    <label for="appliance">Appliances</label>
-    <input type="checkbox" id="plumbing" name="plumbing" value="pl">
-    <label for="smoking">Plumbing</label>
-    <input type="checkbox" id="electrical" name="electrical" value="e">
-    <label for="electrical">Electrical</label>
-    <br>
-    <input type="checkbox" id="detectors" name="detect" value="d">
-    <label for="detectors">Smoke & CO Detectors</label>
-    <input type="checkbox" id="hvac" name="hvac" value="h">
-    <label for="hvac">HVAC & Filter</label>
-    <input type="checkbox" id="shutoff" name="shut" value="sh">
-    <label for="shutoff">Water Shutoff</label>
-    <br>
-     <br>
-    <input type="checkbox" id="doors" name="doors" value="do">
-    <label for="doors">Doors & Windows</label>
-    <input type="checkbox" id="steps" name="steps" value="st">
-    <label for="steps">Steps & Handrails</label>
-    <input type="checkbox" id="garage" name="garage" value="g">
-    <label for="garage">Garage Doors</label>
-    <input type="checkbox" id="ac" name="ac" value="ac">
-    <label for="ac">AC Condenser</label>
-    <br>
+    <div class="checkbox-grid">
+
+        <label><input type="checkbox" name="sum" value="s"> Summary</label>
+        <label><input type="checkbox" name="work" value="w"> Work done or will be done</label>
+        <label><input type="checkbox" name="recommend" value="r"> Recommendations Require Approval</label>
+
+        <label><input type="checkbox" name="locks" value="l"> Lock</label>
+        <label><input type="checkbox" name="smoking" value="sm"> Signs of Smoking</label>
+        <label><input type="checkbox" name="pets" value="p"> Signs of Pets</label>
+
+        <label><input type="checkbox" name="app" value="a"> Appliances</label>
+        <label><input type="checkbox" name="plumbing" value="pl"> Plumbing</label>
+        <label><input type="checkbox" name="electrical" value="e"> Electrical</label>
+
+        <label><input type="checkbox" name="detect" value="d"> Smoke & CO Detectors</label>
+        <label><input type="checkbox" name="hvac" value="h"> HVAC & Filter</label>
+        <label><input type="checkbox" name="shut" value="sh"> Water Shutoff</label>
+
+        <label><input type="checkbox" name="doors" value="do"> Doors & Windows</label>
+        <label><input type="checkbox" name="steps" value="st"> Steps & Handrails</label>
+        <label><input type="checkbox" name="garage" value="g"> Garage Doors</label>
+
+        <label><input type="checkbox" name="ac" value="ac"> AC Condenser</label>
+
+    </div>
     
     <textarea name="inspection_text" rows="6" cols="80"
         placeholder="Paste inspection notes here..."></textarea>
