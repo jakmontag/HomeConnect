@@ -16,7 +16,15 @@
 <h1>Inspection Report Generator</h1>
 
 <form method="POST" enctype="multipart/form-data">
-
+    <input type="checkbox" id="summary" name="sum" value="s">
+    <label for="summary">Summary</label>
+    <input type="checkbox" id="work" name="work" value="s">
+    <label for="work">Work done or will be done</label>
+    <input type="checkbox" id="recommend" name="recommend" value="r">
+    <label for="recommend">Recomendations Require Approval</label>
+    <br>
+    
+    
     <textarea name="inspection_text" rows="6" cols="80"
         placeholder="Paste inspection notes here..."></textarea>
 <!--        <input type="file" name="{{ key }}" multiple>
