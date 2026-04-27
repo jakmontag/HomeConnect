@@ -22,7 +22,8 @@ SECTIONS = {
     "shutoff" : "Water Shutoff",
     "doors_windows": "Doors & Windows",
     "garage" : "Garage Doors",
-    "condenser" : "AC Condenser"
+    "condenser" : "AC Condenser",
+    "other" : "Other"
 }
 
 def parse_inspection(text):
@@ -33,7 +34,9 @@ def parse_inspection(text):
     parts = [p.strip() for p in text.replace(",", ".").split(".") if p.strip()]
 
     for p in parts:
-        if "appliance" in p:
+        if "overall" in p:
+            report["Summary"]["notes"].append(p)
+        elif    "appliance" in p:
             report["Appliances"]["notes"].append(p)
         elif "plumbing" in p or "water shutoff" in p:
             report["Plumbing"]["notes"].append(p)
@@ -44,7 +47,7 @@ def parse_inspection(text):
         elif "window" in p or "door" in p:
             report["Doors & Windows"]["notes"].append(p)
         else:
-            report["Overall Condition"]["notes"].append(p)
+            report["Other"]["notes"].append(p)
 
     return report
 
