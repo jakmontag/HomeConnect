@@ -66,7 +66,7 @@ def parse_inspection(text):
         elif "garage" in p or "door" in p:
             report["Garage Doors"]["notes"].append(p)
         elif "condenser" in p or "door" in p:
-            report[""AC Condenser]["notes"].append(p)
+            report["AC Condenser"]["notes"].append(p)
         else:
             report["Other"]["notes"].append(p)
 
