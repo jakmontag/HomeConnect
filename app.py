@@ -8,7 +8,7 @@ UPLOAD_FOLDER = "static/uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 SECTIONS = {
-    "general": "Overall Condition",
+    "general": "Summary",
     "maintenance" : "Maintenance Work",
     "projects" : "Recommendations Require Approval",
     "keys" : "Locks",
