@@ -44,7 +44,7 @@ def parse_inspection(text):
         elif "window" in p or "door" in p:
             report["Doors & Windows"]["notes"].append(p)
         else:
-            report["General Condition"]["notes"].append(p)
+            report["Overall Condition"]["notes"].append(p)
 
     return report
 
