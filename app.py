@@ -21,6 +21,7 @@ SECTIONS = {
     "hvac": "HVAC System",
     "shutoff" : "Water Shutoff",
     "doors_windows": "Doors & Windows",
+    "steps_handrails" : "Steps & Handrails",
     "garage" : "Garage Doors",
     "condenser" : "AC Condenser",
     "other" : "Other"
@@ -36,16 +37,36 @@ def parse_inspection(text):
     for p in parts:
         if "overall" in p:
             report["Summary"]["notes"].append(p)
-        elif    "appliance" in p:
+        elif    "fixed" in p:
+            report["Maintenance Work"]["notes"].append(p)
+        elif    "recommend" in p:
+            report["Recommendations Require Approval"]["notes"].append(p)
+        elif    "key" in p:
+            report["Locks"]["notes"].append(p) 
+        elif    "smoking" in p:
+            report["Signs of Smoking"]["notes"].append(p)        
+        elif    "dog" in p:
+            report["Signs of Pets"]["notes"].append(p)
+        elif "appliance" in p or "water shutoff" in p:
             report["Appliances"]["notes"].append(p)
         elif "plumbing" in p or "water shutoff" in p:
             report["Plumbing"]["notes"].append(p)
         elif "electrical" in p or "detector" in p:
             report["Electrical"]["notes"].append(p)
+        elif "detector" in p or "detector" in p:
+            report["Detectors"]["notes"].append(p),
         elif "furnace" in p or "ac" in p or "filter" in p:
             report["HVAC System"]["notes"].append(p)
+        elif "shutoff" in p or "ac" in p or "filter" in p:
+            report["Water Shutoff"]["notes"].append(p)
         elif "window" in p or "door" in p:
             report["Doors & Windows"]["notes"].append(p)
+        elif "steps" in p or "door" in p:
+            report["Steps & Handrails"]["notes"].append(p)
+        elif "garage" in p or "door" in p:
+            report["Garage Doors"]["notes"].append(p)
+        elif "condenser" in p or "door" in p:
+            report[""AC Condenser]["notes"].append(p)
         else:
             report["Other"]["notes"].append(p)
 
