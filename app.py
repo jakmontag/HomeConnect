@@ -94,13 +94,6 @@ def index():
             for note in content["notes"]:
                 pdf.multi_cell(0, 8, f"- {note}")
 
-            # If you add images back later, they'll still work
-            for img in content.get("images", []):
-                try:
-                    pdf.image(img, w=100)
-                except:
-                    pass
-
         pdf_path = "report.pdf"
         pdf.output(pdf_path)
 
